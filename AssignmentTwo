@@ -1,5 +1,4 @@
-#PROFESSOR, I'M CURRENTLY WORKING ON THE ASSIGNMENTS BELOW FOR THE SECOND WEEK. HOWEVER, IT SEEMS BASED ON MY UNDERSTANDING THE ASSIGNMENTS 
-INQUIRES THAT WE KNOW HOW TO TYPE UP SPECIFIC COMMAND AS OPPOSE TO WRITE A SCRIPT. OR IS IT A COMBINATION OF BOTH???
+#PROFESSOR, updated?
 
 
 #!/bin/bash
@@ -8,7 +7,7 @@ INQUIRES THAT WE KNOW HOW TO TYPE UP SPECIFIC COMMAND AS OPPOSE TO WRITE A SCRIP
 #Date: 2/11/2019
 #Purpose: This is a bash one-liner to get the pids of all *ython* processes running on any machine. i.e. all jython, python, python2, python3, cython, etc.
 
-sh -c 'echo $PPID'
+ps -ef | grep python
 
 #END
 
@@ -23,40 +22,23 @@ sh -c 'echo $PPID'
 #Date: 2/11/2019
 #Purpose: My attempt to  CONT signal to any *ython process whose pid is a multiple of 2, and a STOP signal to any process with an odd pid
 
-
-#!/bin/bash
-# JOB 3
-PID=$1
-if [ -z $PID ];
-then
-    echo "No pid specified"
-fi
-
-PPLIST=$PID
-CHILD_LIST=`pgrep -P $PPLIST -d,`
-
-while [ ! -z "$CHILD_LIST" ]
-do
-    PPLIST="$PPLIST,$CHILD_LIST"
-    CHILD_LIST=`pgrep -P $CHILD_LIST -d,`
-done
-
-SIGNAL=$2
-
-if [ -z $SIGNAL ]
-then
-    SIGNAL="TERM"
-fi
-#do substring from comma to space
-kill -$SIGNAL ${PPLIST//,/ }
+kill -9 -$(ps -o pgid= $PID | grep -o '[0-9]*')
 
 #END
 
 
 
 
+#!/bin/bash
+# JOB 3
 
-#Job 3
+
+#END
+
+
+
+
+#Job 4
 #Purpose: My attempt to create bash program to delete any file under the pwd that contains a string in the format "XX-XX-XX" where X is a numeric character.
 
 
