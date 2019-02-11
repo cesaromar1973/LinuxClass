@@ -1,1 +1,85 @@
+#PROFESSOR, HERE ARE FOUR BAS COMMANDS FOR THE SECOND ASSIGNMENT
+
+
+#!/bin/bash
+# JOB 1
+#Author: Cesar Omar Sanchez
+#Date: 2/11/2019
+#Purpose: This is a bash one-liner to get the pids of all *ython* processes running on any machine. i.e. all jython, python, python2, python3, cython, etc.
+
+sh -c 'echo $PPID'
+
+#END
+
+
+
+
+
+
+#!/bin/bash
+# JOB 2
+#Author: Cesar Omar Sanchez
+#Date: 2/11/2019
+#Purpose: My attempt to  CONT signal to any *ython process whose pid is a multiple of 2, and a STOP signal to any process with an odd pid
+
+
+#!/bin/bash
+# JOB 3
+PID=$1
+if [ -z $PID ];
+then
+    echo "No pid specified"
+fi
+
+PPLIST=$PID
+CHILD_LIST=`pgrep -P $PPLIST -d,`
+
+while [ ! -z "$CHILD_LIST" ]
+do
+    PPLIST="$PPLIST,$CHILD_LIST"
+    CHILD_LIST=`pgrep -P $CHILD_LIST -d,`
+done
+
+SIGNAL=$2
+
+if [ -z $SIGNAL ]
+then
+    SIGNAL="TERM"
+fi
+#do substring from comma to space
+kill -$SIGNAL ${PPLIST//,/ }
+
+#END
+
+
+
+
+
+#Job 3
+#Purpose: My attempt to create bash program to delete any file under the pwd that contains a string in the format "XX-XX-XX" where X is a numeric character.
+
+
+#END
+
+
+
+
+#Job 4
+#Purpose: The Following command and steps  My attempt to create bash program STOP all processes belonging to user "joseph"
+
+1. List the process of running:
+
+ps aux
+
+2. Select the user ID number (I'm using 1234 as an example)
+
+kill -9 1234
+
+
+#END
+
+
+
+
+
 
