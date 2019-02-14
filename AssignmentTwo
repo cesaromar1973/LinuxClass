@@ -23,7 +23,10 @@ ps | grep ython | cut -c1-5 | grep [24680]$ | xargs kill -CONT
 #Purpose: My attempt to create bash program to delete any file under the pwd that contains a string in the format "XX-XX-XX" where X is a numeric character.
 
 #!/bin/bash
-grep -l xx-xx-xx * | xargs rm
+
+grep '[0-9]{1,4}'| xargs rm
+
+
 
 
 
