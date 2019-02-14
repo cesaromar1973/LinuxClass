@@ -10,7 +10,8 @@ ps -ef | grep python
 # JOB 2
 #Purpose: My attempt to  CONT signal to any *ython process whose pid is a multiple of 2, and a STOP signal to any process with an odd pid
 
-ps --ppid $$ | grep -c ^python file.txt | ps -A -o cmd,pid | xargs kill -9
+
+ps | grep ython | cut -c1-5 | grep [24680]$ | xargs kill -CONT
 
 
 
